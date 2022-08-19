@@ -7,6 +7,8 @@ import './Expenses.css';
 
 const Expenses = ({ expenses }) => {
   const [selectedYear, setSelectedYear] = useState('2022');
+  const filterExpenses = ({ date }) =>
+    date.getFullYear().toString() === selectedYear;
 
   return (
     <Card className="expenses">
@@ -14,7 +16,7 @@ const Expenses = ({ expenses }) => {
         filterByYear={setSelectedYear}
         selectedYear={selectedYear}
       />
-      {expenses.map(expense => (
+      {expenses.filter(filterExpenses).map(expense => (
         <ExpenseItem key={expense.id} {...expense} />
       ))}
     </Card>

@@ -30,11 +30,11 @@ const App = () => {
   const [expenses, setExpenses] = useState(allExpenses);
   const onSaveExpenseData = expenseData => {
     setExpenses(prevExpenses => [
-      ...prevExpenses,
       {
         ...expenseData,
         id: uuid(),
       },
+      ...prevExpenses,
     ]);
   };
 
