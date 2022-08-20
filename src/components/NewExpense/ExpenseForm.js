@@ -1,26 +1,19 @@
 import { useState } from 'react';
 import './ExpenseForm.css';
 
-const ExpenseForm = ({ onSaveExpenseData }) => {
+const ExpenseForm = ({ onSaveExpenseData, hideForm }) => {
   const [title, setTitle] = useState('');
   const [amount, setAmount] = useState('');
   const [date, setDate] = useState('');
 
-  const titleChangeHandler = event => {
-    setTitle(event.target.value);
-  };
-
-  const amountChangeHandler = event => {
-    setAmount(event.target.value);
-  };
-
-  const dateChangeHandler = event => {
-    setDate(event.target.value);
-  };
+  const titleChangeHandler = event => setTitle(event.target.value);
+  const amountChangeHandler = event => setAmount(event.target.value);
+  const dateChangeHandler = event => setDate(event.target.value);
 
   const submitHandler = event => {
     event.preventDefault();
 
+    // Update data in `App.js`
     const expenseData = {
       title,
       amount,
@@ -29,9 +22,13 @@ const ExpenseForm = ({ onSaveExpenseData }) => {
 
     onSaveExpenseData(expenseData);
 
+    // Clear the form
     setTitle('');
     setAmount('');
     setDate('');
+
+    // Hide the form
+    hideForm();
   };
 
   return (
@@ -69,7 +66,8 @@ const ExpenseForm = ({ onSaveExpenseData }) => {
           />
         </div>
       </div>
-      <div className="new-expense__action">
+      <div className="new-expense__actions">
+        <button onClick={hideForm}>Cancel</button>;
         <button type="submit">Add Expense</button>
       </div>
     </form>
