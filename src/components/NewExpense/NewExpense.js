@@ -3,13 +3,12 @@ import { ExpenseForm } from './ExpenseForm';
 import { useState } from 'react';
 
 const NewExpense = ({ onSaveExpenseData }) => {
-  const [isAddExpenseFormDisplayed, setIsAddExpenseFormDisplayed] =
-    useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
-  const showAddExpenseForm = () => setIsAddExpenseFormDisplayed(true);
-  const hideAddExpenseForm = () => setIsAddExpenseFormDisplayed(false);
+  const showAddExpenseForm = () => setIsEditing(true);
+  const hideAddExpenseForm = () => setIsEditing(false);
 
-  if (!isAddExpenseFormDisplayed) {
+  if (!isEditing) {
     return (
       <div className="new-expense">
         <button onClick={showAddExpenseForm}>Add New Expense</button>;

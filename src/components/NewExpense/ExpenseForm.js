@@ -16,7 +16,7 @@ const ExpenseForm = ({ onSaveExpenseData, hideForm }) => {
     // Update data in `App.js`
     const expenseData = {
       title,
-      amount,
+      amount: +amount,
       date: new Date(date),
     };
 
@@ -67,8 +67,10 @@ const ExpenseForm = ({ onSaveExpenseData, hideForm }) => {
         </div>
       </div>
       <div className="new-expense__actions">
-        <button onClick={hideForm}>Cancel</button>;
-        <button type="submit">Add Expense</button>
+        <button type="button" onClick={hideForm}>
+          Cancel
+        </button>
+        ;<button type="submit">Add Expense</button>
       </div>
     </form>
   );
